@@ -99,6 +99,43 @@ clears the nickname`, and a paragraph ending mid-word at `Nothi`). The wording i
 conservative reconstruction of the evident meaning and has **not** been confirmed against an
 authoritative source. Verify each one before relying on this policy.
 
+## app-ads.txt (AdMob)
+
+AdMob finds this file by taking the **Website** URL from each app's Play listing and fetching
+`/app-ads.txt` at that hostname. Both listings already point at `https://atozstudios.github.io/`,
+so the correct location is the root of this repo — one file covers every app.
+
+`github.io` is on the Public Suffix List, so `atozstudios.github.io` counts as its own root
+domain. No subdirectory or custom domain is needed. GitHub Pages serves `.txt` as
+`text/plain; charset=utf-8`, which is what the spec requires.
+
+Create `app-ads.txt` in the repo root containing one line per ad system:
+
+```
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+```
+
+- `pub-XXXXXXXXXXXXXXXX` — your own AdMob publisher ID, from
+  **AdMob → Settings → Account information → Publisher ID**.
+- `f08c47fec0942fa0` — Google's certification authority (TAG) ID. This value is fixed; it is the
+  same for every publisher.
+- Using any mediation network adds a line per network, each with that network's own seller ID and
+  TAG ID. Take those from the network's own documentation — do not guess them.
+
+Then verify:
+
+```bash
+curl -i https://atozstudios.github.io/app-ads.txt   # expect 200 and text/plain
+```
+
+In AdMob, **Apps → app-ads.txt** shows crawl status; "Check for updates" requests a re-crawl.
+Allow up to 24 hours.
+
+> **Do not commit a placeholder.** A file that exists but does not list your publisher ID is a
+> positive statement that nobody is authorised to sell your inventory — buyers may then refuse
+> your traffic. That is worse than having no file at all. Publish it only once the real publisher
+> ID is in place.
+
 ## Local preview
 
 ```bash

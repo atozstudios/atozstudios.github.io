@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# AdMob's app-ads.txt crawler. The wildcard record above already permits it,
+# but Google documents this record explicitly, so it is stated outright to
+# remove any ambiguity. An empty Disallow means "nothing is disallowed".
+# See https://support.google.com/admob/answer/9776740
+User-agent: Google-adstxt
+Disallow:
+
 Sitemap: https://atozstudios.github.io/sitemap.xml
