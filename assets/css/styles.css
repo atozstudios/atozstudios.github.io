@@ -128,6 +128,10 @@ p:last-child { margin-bottom: 0; }
 }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
 
+/* The nav's store button carries the official Google Play arrow mark. */
+.nav .btn--ghost { border-bottom: 1.5px solid var(--line); }
+.nav__play { width: 16px; height: 17px; flex-shrink: 0; }
+
 /* Only three links, so they still fit on a phone — no hamburger needed.
    The Google Play button is the one thing dropped, since every page has its
    own store button in the content. */
@@ -140,8 +144,10 @@ p:last-child { margin-bottom: 0; }
   .nav .btn { display: none; }
 }
 @media (max-width: 400px) {
-  .nav { gap: .85rem; }
-  .nav a { font-size: .775rem; }
+  .hdr__in { gap: .6rem; padding-inline: 1rem; }
+  .brand { font-size: .94rem; gap: .5rem; }
+  .nav { gap: .7rem; }
+  .nav a { font-size: .75rem; }
 }
 
 /* ------------------------------------------------------------------ hero  */
@@ -206,6 +212,13 @@ p:last-child { margin-bottom: 0; }
 }
 .sec-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
 .sec-head__count { font-size: .82rem; color: var(--text-soft); font-weight: 500; white-space: nowrap; }
+
+/* On narrow phones the nowrap caption cannot sit beside the heading, so stack
+   it and let it wrap rather than pushing the page wider than the viewport. */
+@media (max-width: 560px) {
+  .sec-head { flex-direction: column; align-items: flex-start; gap: .3rem; }
+  .sec-head__count { white-space: normal; }
+}
 
 /* Per-app theming. Put data-accent="numova" (or "pinball") on any .app block or
    on <main> of an app page; everything inside picks up that app's colour.
@@ -436,3 +449,37 @@ a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border
 
 .err { padding: clamp(5rem, 14vw, 9rem) 0; }
 .err h1 { font-size: clamp(3.5rem, 12vw, 7rem); margin-bottom: 1rem; }
+
+/* ------------------------------------------------------------ legal pages  */
+
+.legal { padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw, 5rem); }
+
+.legal__head {
+  display: flex; align-items: center; gap: 1.1rem;
+  padding-bottom: 1.75rem; margin-bottom: clamp(2rem, 5vw, 2.75rem);
+  border-bottom: 1px solid var(--line);
+}
+.legal__icon { width: 56px; height: 56px; border-radius: 13px; box-shadow: var(--shadow-sm); flex-shrink: 0; }
+.legal__head h1 { font-size: clamp(1.85rem, 4.5vw, 2.7rem); margin: .15rem 0 .3rem; }
+.legal__date { font-size: .85rem; color: var(--text-soft); margin: 0; }
+
+/* Legal prose runs slightly narrower and looser than marketing copy. */
+.legal__body { max-width: 72ch; }
+.legal__body h2 {
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  margin: 2.5rem 0 .75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-soft);
+}
+.legal__body h2:first-of-type { margin-top: 2rem; }
+.legal__body p, .legal__body li { line-height: 1.72; }
+.legal__body ul { margin-bottom: 1.25rem; }
+
+/* The policies quote bare URLs, which have no break opportunities and would
+   push narrow phones sideways. */
+.legal__body a { overflow-wrap: anywhere; }
+
+.legal__lede {
+  font-size: 1.06rem; color: var(--text) !important;
+  padding-left: 1.1rem; border-left: 2.5px solid var(--accent);
+}

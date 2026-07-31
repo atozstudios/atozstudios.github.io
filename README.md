@@ -12,7 +12,9 @@ Edit a file, commit, push; GitHub Pages serves it.
 index.html            Landing page: hero, one block per app, about, next-up cards
 numova.html           Numova detail page
 pinball-rush.html     Pinball Rush detail page
-privacy.html          Hub linking out to each app's privacy policy
+privacy.html          Hub: one card per app, linking to the full policies
+privacy-numova.html          Numova privacy policy, in full
+privacy-pinball-rush.html    Pinball Rush privacy policy, in full
 404.html              Not-found page
 robots.txt            Points crawlers at the sitemap
 sitemap.xml           Update when you add a page
@@ -84,8 +86,18 @@ policies. Two things to keep that way:
   crop its transparent margin — that margin is the clear space Google's brand guidelines
   require. Size it only via `height` in the `.play` rule.
 
-Privacy policies are linked, never copied, so this site cannot drift from the versions
-Google Play points at.
+**Privacy policies are hosted here in full**, not linked out to Google Sites. That means this
+site is now the canonical location, so two things must stay in sync by hand:
+
+- The **privacy policy URL in each app's Play Console listing** should point at
+  `https://atozstudios.github.io/privacy-<app>.html`.
+- Editing a policy here does not update anything else. There is no other copy.
+
+The Numova policy carries seven `<!-- RECONSTRUCTED (n) -->` comments. The text on the original
+Google Site was corrupted mid-sentence in those seven places (for example `deletes your entriend
+clears the nickname`, and a paragraph ending mid-word at `Nothi`). The wording in those spots is a
+conservative reconstruction of the evident meaning and has **not** been confirmed against an
+authoritative source. Verify each one before relying on this policy.
 
 ## Local preview
 
