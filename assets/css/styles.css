@@ -128,9 +128,17 @@ p:last-child { margin-bottom: 0; }
 }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
 
-/* The nav's store button carries the official Google Play arrow mark. */
-.nav .btn--ghost { border-bottom: 1.5px solid var(--line); }
-.nav__play { width: 16px; height: 17px; flex-shrink: 0; }
+/* The nav's store button carries the official Google Play arrow mark.
+   `.nav a` above sets padding:.25rem 0 and a transparent bottom border for the
+   text links; at (0,1,1) that outranks .btn/.btn--sm, which would leave the
+   pill with no horizontal padding. `.nav a.btn` is (0,2,1) and wins back. */
+.nav a.btn {
+  gap: .45rem;
+  padding: .5rem .95rem;
+  border: 1.5px solid var(--line);
+}
+.nav a.btn:hover { border-color: var(--accent); color: var(--accent-ink); }
+.nav__play { width: 15px; height: 16px; flex-shrink: 0; }
 
 /* Only three links, so they still fit on a phone — no hamburger needed.
    The Google Play button is the one thing dropped, since every page has its
