@@ -374,18 +374,29 @@ a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border
 .modes h3 { font-size: 1.05rem; margin-bottom: .35rem; }
 .modes p { font-size: .89rem; color: var(--text-mid); margin: 0; }
 
-/* Play badge — official Google Play button asset is not bundled, so this is a
-   text button. Swap in the official badge PNG if you prefer. */
+/* Official "Get it on Google Play" badge, used unmodified per Google's brand
+   guidelines. The PNG ships with transparent clear space baked in (the button
+   sits 41/250 in from each edge), so it is never scaled or recoloured here —
+   only sized. The negative left margin pulls the button's visible edge into
+   line with the text above it without cropping that clear space. */
 .play {
-  display: inline-flex; align-items: center; gap: .6rem;
-  background: var(--text); color: var(--bg);
-  padding: .75rem 1.4rem; border-radius: 100px;
-  font-size: .9rem; font-weight: 600; text-decoration: none;
-  transition: background-color .2s ease, transform .15s ease;
+  display: inline-block;
+  line-height: 0;
+  border-radius: 10px;
+  margin-left: -12px;
+  transition: opacity .2s ease, transform .15s ease;
 }
-.play:hover { background: var(--accent-ink); color: #fff; }
+.play img { height: 72px; width: auto; }
+.play:hover { opacity: .85; }
 .play:active { transform: translateY(1px); }
-.play svg { width: 17px; height: 19px; flex-shrink: 0; }
+
+@media (max-width: 480px) {
+  .play img { height: 64px; }
+  .play { margin-left: -10px; }
+}
+
+/* Centred call-to-action blocks: no alignment nudge needed. */
+.center .play { margin-left: 0; }
 
 /* ---------------------------------------------------------------- footer  */
 

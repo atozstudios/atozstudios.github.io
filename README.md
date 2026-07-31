@@ -79,6 +79,10 @@ policies. Two things to keep that way:
 - **Scope claims to the app you can prove them for.** "Plays offline, no account" is stated
   about Numova specifically, because that is what Numova's privacy policy says. Pinball Rush
   uses Google Play Services, so the same claim is not made for it or for the studio overall.
+- **The Google Play badge is Google's official asset**, downloaded from
+  `play.google.com/intl/en_us/badges/` and used unmodified. Do not recolour it, redraw it, or
+  crop its transparent margin — that margin is the clear space Google's brand guidelines
+  require. Size it only via `height` in the `.play` rule.
 
 Privacy policies are linked, never copied, so this site cannot drift from the versions
 Google Play points at.
